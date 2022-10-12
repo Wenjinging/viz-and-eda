@@ -159,8 +159,9 @@ Let’s facet same things!!
 ``` r
 weather_df %>%
   ggplot(aes(x = tmin, y = tmax, color = name)) +
-  geom_point() +
-  geom_smooth(se = FALSE)
+  geom_point(alpha =.2) +
+  geom_smooth(se = FALSE) +
+  facet_grid(.~name)
 ```
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
@@ -171,23 +172,50 @@ weather_df %>%
 
 ![](viz_1_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
+let’s combine some elements and try a new plot.
+
 ``` r
-  facet_grid(. ~name)
+weather_df%>%
+  ggplot(aes(x = date, y = tmax, color = name))+
+  geom_point(aes(size = prcp), alpha = .5) +
+  geom_smooth(se = FALSE) +
+  facet_grid(.~ name)
 ```
 
-    ## <ggproto object: Class FacetGrid, Facet, gg>
-    ##     compute_layout: function
-    ##     draw_back: function
-    ##     draw_front: function
-    ##     draw_labels: function
-    ##     draw_panels: function
-    ##     finish_data: function
-    ##     init_scales: function
-    ##     map_data: function
-    ##     params: list
-    ##     setup_data: function
-    ##     setup_params: function
-    ##     shrink: TRUE
-    ##     train_scales: function
-    ##     vars: function
-    ##     super:  <ggproto object: Class FacetGrid, Facet, gg>
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 3 rows containing missing values (geom_point).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+## Some small notes
+
+How many geoms have to exist?
+
+You can have whatever geoms you want\>
+
+``` r
+weather_df%>%
+  ggplot(aes(x = tmin, y =tmax, color = name)) +
+  geom_smooth(se = FALSE)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 15 rows containing non-finite values (stat_smooth).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+You can use a neat geom!
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_hex()
+```
+
+    ## Warning: Removed 15 rows containing non-finite values (stat_binhex).
+
+![](viz_1_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->

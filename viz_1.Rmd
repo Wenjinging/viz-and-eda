@@ -83,8 +83,44 @@ Let's facet same things!!
 ```{r}
 weather_df %>%
   ggplot(aes(x = tmin, y = tmax, color = name)) +
-  geom_point() +
-  geom_smooth(se = FALSE)
-  facet_grid(. ~name)
+  geom_point(alpha =.2) +
+  geom_smooth(se = FALSE) +
+  facet_grid(.~name)
 ```
+
+let's combine some elements and try a new plot.
+
+```{r}
+weather_df%>%
+  ggplot(aes(x = date, y = tmax, color = name))+
+  geom_point(aes(size = prcp), alpha = .5) +
+  geom_smooth(se = FALSE) +
+  facet_grid(.~ name)
+```
+
+
+## Some small notes
+
+How many geoms have to exist?
+
+You can have whatever geoms you want>
+
+```{r}
+weather_df%>%
+  ggplot(aes(x = tmin, y =tmax, color = name)) +
+  geom_smooth(se = FALSE)
+```
+
+You can use a neat geom!
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_hex()
+```
+
+
+
+
+
 
