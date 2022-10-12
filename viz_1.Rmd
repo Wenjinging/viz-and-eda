@@ -1,5 +1,5 @@
 ---
-title: "Viualization"
+title: "Visualization"
 subtitle: "Part I"
 output: github_document
 ---

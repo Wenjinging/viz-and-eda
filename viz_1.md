@@ -1,4 +1,4 @@
-Viualization
+Visualization
 ================
 
 ``` r
