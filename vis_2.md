@@ -226,3 +226,22 @@ options(
 scale_color_discrete = scale_color_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
+
+## date ars in `geom`
+
+``` r
+central_park =
+  weather_df%>%
+  filter(name =="CentralPack_NY")
+
+waikiki = 
+  weather_df%>%
+  filter(name == "Waikiki_HA")
+
+ggplot(waikiki, aes(x = date, y = tmax, color = name)) +
+  geom_point() 
+```
+
+    ## Warning: Removed 3 rows containing missing values (geom_point).
+
+![](vis_2_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->

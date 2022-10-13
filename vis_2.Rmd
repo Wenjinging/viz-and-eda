@@ -159,6 +159,20 @@ scale_fill_discrete = scale_fill_viridis_d
 ```
 
 
+## date ars in `geom`
+
+```{r}
+central_park =
+  weather_df%>%
+  filter(name =="CentralPack_NY")
+
+waikiki = 
+  weather_df%>%
+  filter(name == "Waikiki_HA")
+
+ggplot(waikiki, aes(x = date, y = tmax, color = name)) +
+  geom_point() 
+```
 
 
 
