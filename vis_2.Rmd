@@ -57,11 +57,85 @@ weather_df %>%
 ```
 
 
-## 
+## Scales
+
+Start with the same plot; x and y scales.
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) + 
+  geom_point( alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "min daily temperature (C)",
+    y = "max daily temperature (C)",
+    caption = "Data from rnoaa package;temperature in 2017"
+  )+
+  scale_x_continuous(
+    breaks = c(-15,0,15),
+    labels =c("-15C","0","15")
+  )+
+  scale_y_continuous(
+    position = "right"
+  )
+```
+
+Look at color scales
+
+```{r}
+
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) + 
+  geom_point( alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "min daily temperature (C)",
+    y = "max daily temperature (C)",
+    caption = "Data from rnoaa package;temperature in 2017"
+  ) +
+  viridis::scale_color_viridis(
+    name ="Location",
+    discrete = TRUE)
+```
 
 
+## Themes
 
+Shift the legend.
 
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) + 
+  geom_point( alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "min daily temperature (C)",
+    y = "max daily temperature (C)",
+    caption = "Data from rnoaa package;temperature in 2017"
+  ) +
+  viridis::scale_color_viridis(
+    name ="Location",
+    discrete = TRUE) +
+  theme(legend.position = "bottom")
+```
+
+change the whole theme.
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) + 
+  geom_point( alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "min daily temperature (C)",
+    y = "max daily temperature (C)",
+    caption = "Data from rnoaa package;temperature in 2017"
+  ) +
+  viridis::scale_color_viridis(
+    name ="Location",
+    discrete = TRUE) +
+  theme_minimal() +  theme(legend.position = "bottom")
+```
 
 
 
